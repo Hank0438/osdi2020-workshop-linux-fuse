@@ -23,7 +23,7 @@
 
 
 * Workflow
-    ![](https://i.imgur.com/SJkHOSe.png =x300)
+    ![](https://i.imgur.com/SJkHOSe.png =x250)
     * request
         * User's application send request as normal file operation. 
         * And then, VFS transmit request by calling the file operation of registered file system.
@@ -33,7 +33,7 @@
 
 * Queue
 
-    ![](https://i.imgur.com/LifOeSa.png)
+    ![](https://i.imgur.com/LifOeSa.png =x300)
 
     主要有5個queue：
     (1) interrupts: INTERRUPT requests in the interrupts queue, 最優先
@@ -57,7 +57,7 @@
 
 
     * write
-        ![](https://i.imgur.com/HyjvMKD.png)
+        ![](https://i.imgur.com/HyjvMKD.png =x300)
         
         * Steps
             1. 客戶端在mount目錄下面，對一個regular file調用write, 這一步是在用戶空間執行
@@ -70,7 +70,7 @@
             8. vfs_write最終調用fuse_dev_write將執行結果返回給第3步中等待在waitq的進程，此進程得到reply 后，write返回
 
     * mount
-        ![](https://i.imgur.com/3kGEbgE.png)
+        ![](https://i.imgur.com/3kGEbgE.png =x300)
 
         * FUSE模塊加載注冊了fuseblk_fs_type和fuse_fs_type兩種文件類型，默認情況下使用的是fuse_fs_type即mount 函數指針被初始化為fuse_mount,  而fuse_mount實際調用mount_nodev，它主要由如下兩步組成：
             1. sget(fs_type)搜索文件系統的超級塊對象(super_block)鏈表(type->fs_supers),如果找到一個與塊設備相關的超級塊，則返回它的地址。否則，分配並初始化一個新的超級塊對象，把它插入到文件系統鏈表和超級塊全局鏈表中，並返回其地址。
@@ -112,7 +112,7 @@
 
 ## Usage
 * libfuse/example/hello.c
-    ![](https://i.imgur.com/L9pxgLf.png)
+    ![](https://i.imgur.com/L9pxgLf.png =x300)
 
 
     ![](https://i.imgur.com/HNnZfau.png)
@@ -199,4 +199,5 @@ User-Space File Systems](http://libfuse.github.io/doxygen/fast17-vangoor.pdf)
     * 上層(user-space)可能有更多發展，network的應用或加密的應用
     * 下層(kernel-space)確實會浪費不少資源，但是可以方便直接在 userspace 開發 filesystem，kernel 也比較不會被汙染
     * 在 [When eBPF Meets FUSE - Improving the performance of user file systems](https://events19.linuxfoundation.org/wp-content/uploads/2017/11/When-eBPF-Meets-FUSE-Improving-Performance-of-User-File-Systems-Ashish-Bijlani-Georgia-Tech.pdf) 有做比較
-![](https://i.imgur.com/KfTc9yO.png)
+    
+        ![](https://i.imgur.com/KfTc9yO.png =x250)
